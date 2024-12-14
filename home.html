@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End Mastermind!</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: sans-serif;
+            background-color: #000000; /* Dark background */
+            color: #ddd; /* Light text for contrast */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #141414;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white divider */
+        }
+
+        h1:hover{
+            color: #00ffff;
+        }
+
+        .icons {
+            font-size: 30px;
+            color: #e2e2e2;
+            cursor: pointer;
+            padding: 10px;
+            display: block;
+            top: 20px;
+            left: 20px;
+        }
+        p:hover{
+            color: #00ffff;
+        }
+        a:hover {
+            color: #00ffff; /* Links change color on hover with the same teal */
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        }
+        .menu{
+            transition: all 1s ease-in-out;
+        }
+
+        .icons{
+            transition: all 1s ease-in-out;
+        }
+
+        .menu.active {
+            display: flex;
+        }
+
+        .menu a {
+            color: rgb(255, 255, 255);
+            padding: 15px 25px;
+            text-decoration: none;
+            border-bottom: 1px solid #444;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            margin-left: 20px;
+            padding: 20px;
+        }
+
+        /* Styling for active menu */
+        .active {
+            background-color: rgb(0, 175, 175);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            margin-top: 50px;
+            max-width: 250px; /* Set a maximum width for responsiveness */
+            border-radius: 10px; /* Rounded corners */
+            background-color: #222; /* Slightly darker background for container */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Thin white border */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Front-End Playground</h1>
+    <!-- Menu Icon to Trigger the Menu -->
+    <div class="icons" onclick="toggleMenu()">&#9776;</div>
+    <!-- Side Menu -->
+    <div class="menu" id="icon">
+        <a class="active">Home</a>
+        <a href="compiler.html">Learn HTML</a>
+        <a href="#">Master CSS</a>
+        <a href="#">Unleash JavaScript</a>
+        <a href="#">Explore Frameworks</a>
+        <a href="#">Community Forum</a>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div class="container">
+            <p>Welcome to your one-stop shop for conquering the world of front-end development! Here, you'll find all the resources you need to build stunning and interactive websites. Whether you're a complete beginner or looking to refine your skills, we've got you covered. Dive into our comprehensive tutorials, explore interactive challenges, and connect with a vibrant community of fellow learners.</p>
+        </div>
+    </main>
+
+    <!-- JavaScript to Toggle Menu -->
+    <script>
+        // Function to toggle the menu
+        function toggleMenu() {
+            const menu = document.getElementById("icon");
+            menu.classList.toggle("active");
+        }
+    
+        // Close the menu when clicking outside
+        document.addEventListener("click", function(event) {
+            const menu = document.getElementById("icon");
+            const icon = document.querySelector(".icons"); // Menu icon element
+            if (!menu.contains(event.target) && !icon.contains(event.target)) {
+                menu.classList.remove("active");
+            }
+        });
+    
+        // Close the menu when clicking on a menu link
+        const menuLinks = document.querySelectorAll(".menu a");
+        menuLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                const menu = document.getElementById("icon");
+                menu.classList.remove("active");
+            });
+        });
+    </script>
+    
+</body>
+</html>

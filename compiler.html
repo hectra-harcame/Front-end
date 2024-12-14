@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Compiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #1d1d1d;
+        }
+        header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 10px;
+         border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white divider */
+        }
+        .container {
+            width: 85%;
+            max-width: auto;
+            margin: 20px;
+            padding: 20px;
+            background-color: #000000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(5, 5, 5, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 0 10px; /* Adjust margin for spacing */
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.3); /* Text shadow for depth */
+        }
+        h1 :hover{
+            color: #00ffff;
+        }
+        .editor-output {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        textarea, iframe {
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        textarea {
+            height: 300px;
+            border: 1px solid #070303;
+            font-family: monospace;
+            font-size: 16px;
+            color: lightgreen;
+            background-color: #070303;
+            scroll-behavior: smooth;
+        }
+        textarea::-webkit-scrollbar{
+            width: 12px;
+        }
+        textarea::-webkit-scrollbar-track{
+            background: cadetblue;
+            border-radius: 10px;
+        }
+        textarea::-webkit-scrollbar-thumb{
+            background: grey;
+            border-radius: 10px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover{
+            background: aquamarine;
+        }
+        iframe {
+            height: 400px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #202020;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            color: #00ffff;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .sss{
+            color: white;
+        }
+        h1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        h1,a {
+        color: #949494;
+        text-decoration: none;
+        padding: auto;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="home.html">Front-End Playground</a></h1>
+        </div>
+        <div class="container">
+        <div class="editor-output">
+            <textarea id="htmlCode" placeholder="Write your HTML code here...">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    </head>
+    <style>
+        /*css here*/
+        body{
+            background-color: #1d1d1d;
+        }
+        h1{
+            color: #00ffff;
+        }
+    </style>
+    <body>
+        <div>
+        <h1>This is a heading</h1>
+        </div>
+    <script>
+        /*javascript here!*/
+    </script>
+    </body>
+    </html>
+            </textarea>
+            </div>
+            
+        <div style="margin-top: 10px;">
+            <button onclick="compileCode()">Compile</button>
+            <button class="clear" onclick="clearCode()">Clear</button>
+            <button class="save" onclick="saveCode()">Save</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="editor-output">
+            <iframe class="sss" id="output" ></iframe>
+        </div>
+    </div>
+
+    <script>
+        function compileCode() {
+            const htmlCode = document.getElementById("htmlCode").value;
+            const outputFrame = document.getElementById("output");
+            outputFrame.contentDocument.body.innerHTML = htmlCode;
+        }
+
+        function clearCode() {
+            document.getElementById("htmlCode").value = '';
+            document.getElementById("output").contentDocument.body.innerHTML = '';
+        }
+
+        function saveCode() {
+            const htmlCode = document.getElementById("htmlCode").value;
+            const blob = new Blob([htmlCode], { type: "text/html" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "code.html";
+            link.click();
+        }
+    </script>
+</body>
+</html>
